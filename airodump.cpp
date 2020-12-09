@@ -75,8 +75,7 @@ void *save_data(void * arg)
 {
 	char errbuf[PCAP_ERRBUF_SIZE];      //size 256
 	pcap_t* handle = pcap_open_live("wlan1", BUFSIZ, 1, 100, errbuf);
-	//struct thread_data * data =(struct thread_data *)arg;             //?
-	//pcap_t *handle = data->handle;
+
 	while (true)
 	{
 		struct pcap_pkthdr* header;
@@ -116,7 +115,7 @@ void *save_data(void * arg)
 						if (*(point + 8) == 0x02)          //pairwise suite count : 1
 							a = 4;
 
-						switch (*(point + 13 + a))         //Cipher_Suite_type :
+						switch (*(point + 13 + a))         
 						{
 						case 2:
 						{
